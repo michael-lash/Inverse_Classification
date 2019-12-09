@@ -21,7 +21,7 @@ Please see examine the files "stud_port_class.csv" and "stud_indices.csv". These
    a. stud_port_class.csv: Contains the data.
    b. stud_indices.csv: Designates each feature as being the id, target, or belonging to the unchangeable, indirectly changeable, or directly changeable feature groups. There are also costs +/- imposed and direction of change. NOTE: I have not updated the code to accomodate "free" moving directly changeable features (i.e., features that can either increase or decrease). Therefore, please ensure that you designate only a single cost, either + or - with a "0" in the other, respective column and that the direction is either -1 or 1.
 
-###To run the code:
+**To run the code:**
 
 1. Use train.py to train a "regular" model. Please see the file "example_train.sh" for an example on how to use this code. Also please examine train.py for additional parameters that can be specified. The data will automatically be randomly partitioned into train/validation/test with the test set being used for inverse classification later on. There will be pickle file created that holds all of the necessary data and parameters to be used during the inverse classification process.
 
