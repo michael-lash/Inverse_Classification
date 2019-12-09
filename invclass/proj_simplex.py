@@ -8,7 +8,6 @@ __email__ = "michael.lash@ku.edu"
 __status__ = "Production"
 
 
-
 """
 Implementation of the simplex projection via bisection search described in:
 
@@ -36,9 +35,14 @@ def proj_simplex(v, z, c, l, u, tau=0.0001, max_iter=1000):
 	lb = 0.0
 	ub = 0.0
 	temp = Eval(v, c, l, u, lb)
+        
+
 	if(temp <=z):
-		x[np.nonzero(((v-lb*c)>0).astype(int))] = np.maximum(np.minimum(v[np.nonzero(((v-lb*c)>0).astype(int))]-lb*c[np.nonzero(((v-lb*c)>0).astype(int))],u[np.nonzero(((v-lb*c)>0).astype(int))]),l[np.nonzero(((v-lb*c)>0).astype(int))])
 		x[np.nonzero(((v-lb*c)<=0).astype(int))] = 0.0
+		x[np.nonzero((v>0).astype(int))] = np.maximum(np.minimum(v[np.nonzero((v>0).astype(int))],
+                                                       u[np.nonzero((v>0).astype(int))]),
+                                                       l[np.nonzero((v>0).astype(int))])
+		
 		return x
 	ub = np.maximum(ub,np.divide(v,c))
 	temp = Eval(v, c, l, u, lb)
