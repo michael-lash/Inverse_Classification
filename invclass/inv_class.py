@@ -52,14 +52,11 @@ np.set_printoptions(threshold=sys.maxsize)
 def inv_class(model, ind_model, x, param_dict):
 
     """
-	sess: A tensorflow session
-	model: A tensorflow model for evaluating f([x_U,x_I,x_D])
-	i_model: A tensorflow model for estimating the I features.
+	model: Model for evaluating f([x_U,x_I,x_D])
+	ind_model: Model for estimating the I features.
 	x: The instance to be inverse classified.
-	b: budget
-	c: cost vector
-	l: lower bounds
-	u: upper bounds
+        param_dict: A dictionary of parameters, created from a function in inv_utils, using the
+                    .pkl data_file (this is created from train.py during data processing).
 
     """
     budgets = param_dict['budgets']
