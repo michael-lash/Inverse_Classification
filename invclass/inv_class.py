@@ -18,7 +18,7 @@ import numpy as np
 from invclass.proj_simplex import proj_simplex
 import pickle as pkl
 from invclass.utils import load_data
-from invclass.inv_utils import inv_gradient, inv_gradient_ind, set_parameters, save_result
+from invclass.inv_utils import inv_gradient, inv_gradient_ind, set_parameters, save_result, set_bounds
 
 seed = 1234
 tf.random.set_seed(seed)
@@ -62,27 +62,12 @@ def inv_class(model, ind_model, x, param_dict):
 	u: upper bounds
 
     """
-    c_p = param_dict['c+']
-    c_n = param_dict['c-']
-    c= np.add(c_p,c_n) #Right now assuming can only move in one direction.
-    d = param_dict['d']
     budgets = param_dict['budgets']
     index_dict = param_dict['inds']
     xU_i = index_dict['xU_ind']
     xI_i = index_dict['xI_ind']
     xD_i = index_dict['xD_ind']
     xD_ii = index_dict['xD_ind_ind']
-    tl = np.minimum(np.zeros((len(xD_i),)),x[xD_i])
-    tu = np.maximum(np.ones((len(xD_i),)),x[xD_i])
-    txD = x[xD_i]
-    pos_d = np.where(d >tl)
-    neg_d = np.where(d < tl)
-    u = copy.deepcopy(tu)
-    l = copy.deepcopy(tl)
-    #Set bounds in terms of difference for projection onto feasible region.
-    u[neg_d] = txD[neg_d] - tl[neg_d] #Can only decrease
-    u[pos_d] = tu[pos_d] - txD[pos_d] 
-    #sys.exit()
 
     xU_xD = np.array([np.hstack([x[xU_i],x[xD_i]])])
     #Initial prediction of indirect
@@ -104,6 +89,23 @@ def inv_class(model, ind_model, x, param_dict):
     xD_opt_mat[0] = x[xD_i]
     xI_opt_mat[0] = xI_est
     opt_obj_vect[0] = y_hat_init
+  
+
+    #Compute initial gradients for setting the bounds of ambig. d
+    reg_grad_full = inv_gradient(model,x_init)[0]
+    #Compute the gradient of the ind_model
+    ind_grad_full = inv_gradient_ind(ind_model,xU_xD,num_loss=len(xI_i))
+    #Designate partial gradients
+    xD_grad = reg_grad_full[xD_i]
+    xI_grad = reg_grad_full[xI_i]
+    xD_ind_grad = ind_grad_full[:,xD_ii]
+
+    #df/dxD = df/dxD + df/dxI * dg/dxD
+    opt_grad = xD_grad + np.matmul(xI_grad,xD_ind_grad)
+
+    #Set bounds and d, c
+    d, c, l, u = set_bounds(x,opt_grad,param_dict)
+
 
     #Iterate over the budget values
     bud_iter = 0
