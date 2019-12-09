@@ -18,9 +18,9 @@ In the future I will add heurstic optimization and projection onto an L_2 ball (
 
 Please see examine the files "stud_port_class.csv" and "stud_indices.csv". These are the two files that are needed to train models and then run inverse classification. The provided files are processed "Student Peformance" dataset data, originally found on the machine learning repository at this [link](https://archive.ics.uci.edu/ml/datasets/student+performance). Student Performance was one the datasets used in both the ICDMW and SDM papers.
 
-   a. stud_port_class.csv: Contains the data.
+-- stud_port_class.csv: Contains the data.
    
-   b. stud_indices.csv: Designates each feature as being the id, target, or belonging to the unchangeable, indirectly changeable, or directly changeable feature groups. There are also costs +/- imposed and direction of change. NOTE: I have not updated the code to accomodate "free" moving directly changeable features (i.e., features that can either increase or decrease). Therefore, please ensure that you designate only a single cost, either + or - with a "0" in the other, respective column and that the direction is either -1 or 1.
+-- stud_indices.csv: Designates each feature as being the id, target, or belonging to the unchangeable, indirectly changeable, or directly changeable feature groups. There are also costs +/- imposed and direction of change. NOTE: I have not updated the code to accomodate "free" moving directly changeable features (i.e., features that can either increase or decrease). Therefore, please ensure that you designate only a single cost, either + or - with a "0" in the other, respective column and that the direction is either -1 or 1.
 
 **To run the code:**
 
