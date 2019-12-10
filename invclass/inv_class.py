@@ -101,7 +101,7 @@ def inv_class(model, ind_model, x, param_dict):
     opt_grad = xD_grad + np.matmul(xI_grad,xD_ind_grad)
 
     #Set bounds and d, c
-    d, c, l, u = set_bounds(x,opt_grad,param_dict)
+    d, c, l, u = set_bounds(x,-1*opt_grad,param_dict)
 
 
     #Iterate over the budget values
@@ -214,7 +214,10 @@ def inv_class(model, ind_model, x, param_dict):
         #Now set appropriate vars for next budget iteration
         xD_opt_mat[bud_iter] = opt_xD
         xI_opt_mat[bud_iter] = xI_est
-        opt_obj_vect[bud_iter] = obj_vect[-1]
+        if obj_vect[-1] > obj_vect[-2]:
+            opt_obj_vect[bud_iter] = obj_vect[-2]
+        else:
+            opt_obj_vect[bud_iter] = obj_vect[-1]
     return_dict={"obj":opt_obj_vect,
                  "xD":xD_opt_mat,
                  "xI":xI_opt_mat,
