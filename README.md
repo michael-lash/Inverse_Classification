@@ -20,7 +20,7 @@ Please see examine the files "stud_port_class.csv" and "stud_indices.csv". These
 
 - stud_port_class.csv: Contains the data.
    
-- stud_indices.csv: Designates each feature as being the id, target, or belonging to the unchangeable, indirectly changeable, or directly changeable feature groups. There are also costs +/- imposed and direction of change. NOTE: I have not updated the code to accomodate "free" moving directly changeable features (i.e., features that can either increase or decrease). Therefore, please ensure that you designate only a single cost, either + or - with a "0" in the other, respective column and that the direction is either -1 or 1.
+- stud_indices.csv: Designates each feature as being the id, target, or belonging to the unchangeable, indirectly changeable, or directly changeable feature groups. There are also costs +/- imposed and direction of change. Costs and directions must be specified for each directly changeable feature.
 
 **To run the code:**
 
