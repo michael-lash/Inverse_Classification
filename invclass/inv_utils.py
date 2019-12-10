@@ -63,7 +63,8 @@ def set_parameters(data_dict):
     if FLAGS.budget_start - FLAGS.budget_end == 0:
         budgets = [FLAGS.budget_start]
     else:
-        budgets = [i for i in range(FLAGS.budget_start,FLAGS.budget_end+1)]
+        budgets = [i for i in np.arange(FLAGS.budget_start,FLAGS.budget_end+0.0001,
+                  FLAGS.budget_interval)]
 
     param_dict['budgets'] = budgets
 

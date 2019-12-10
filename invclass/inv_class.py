@@ -35,9 +35,11 @@ flags.DEFINE_string('model_file', '', 'File containing inverse class model. Requ
 flags.DEFINE_string('ind_model_file', '', 'File containing the ind model. Required.')
 flags.DEFINE_string('save_file', 'invResult.pkl', 'File name to save results to. Saves to data_path.')
 flags.DEFINE_boolean('classification', False, 'Classification or regression. Default: False.')
-flags.DEFINE_integer('budget_start',1,'Starting budget for inverse classification. Default: 1')
-flags.DEFINE_integer('budget_end',10, 'Ending budget for inverse classification. Set budget_end =\
+flags.DEFINE_float('budget_start',1,'Starting budget for inverse classification. Default: 1')
+flags.DEFINE_float('budget_end',10, 'Ending budget for inverse classification. Set budget_end =\
                      budget_start if only one budget value is desired. Default: 10')
+flags.DEFINE_float('budget_interval',1,'Amount by which to increase the budget values from budget_start\
+                   to budget_end. Default: 1')
 flags.DEFINE_boolean('pos_only', False, 'Whether to only inverse classify those instances that originally\
                      had a negative outcome. Default: False')
 flags.DEFINE_integer('max_iters', 50, 'Maximum number of gradient descent iterations. Default: 100')
