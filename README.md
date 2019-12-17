@@ -16,7 +16,7 @@ In the future I will add heurstic optimization and projection onto an L_2 ball (
 
 ## Use
 
-Please see examine the files "stud_port_class.csv" and "stud_indices.csv". These are the two files that are needed to train models and then run inverse classification. The provided files are processed "Student Peformance" dataset data, originally found on the machine learning repository at this [link](https://archive.ics.uci.edu/ml/datasets/student+performance). Student Performance was one the datasets used in both the ICDMW and SDM papers.
+Please examine the files "stud_port_class.csv" and "stud_indices.csv". These are the two files that are needed to train models and then run inverse classification. The provided files are processed "Student Peformance" dataset data, originally found on the machine learning repository at this [link](https://archive.ics.uci.edu/ml/datasets/student+performance). Student Performance was one the datasets used in both the ICDMW and SDM papers.
 
 - stud_port_class.csv: Contains the data.
    
