@@ -24,10 +24,10 @@ Please examine the files "stud_port_class.csv" and "stud_indices.csv". These are
 
 **To run the code:**
 
-1. Use train.py to train a "regular" model. Please see the file "example_train.sh" for an example on how to use this code. Also please examine train.py for additional parameters that can be specified. The data will automatically be randomly partitioned into train/validation/test with the test set being used for inverse classification later on. There will be pickle file created that holds all of the necessary data and parameters to be used during the inverse classification process.
+1. Use train.py to train a "regular" model. Please see the file "example_train.sh" for an example on how to use this code. Also please examine train.py for additional parameters that can be specified. The data will automatically be randomly partitioned into train/validation/test with the test set being used for inverse classification later on. A pickle file will be created that holds all of the necessary data and parameters to be used during the inverse classification process.
 
 2. Use train.py to train an "indirect" model to predict the indirect features. See "example_ind_train.sh" for an example on how to use this code and, again, please also refer to the train.py code for additional parameters that can be specified.
 
-3. Place the models ("regular" and "indirect") you would like to use in the your data directory).
+3. Place the models ("regular" and "indirect") you would like to use in your data directory).
 
-4. Use inv_class.py to execute inverse classification.  Please see "example_inv_class.sh" for an example. Note that the file "./example_data/pos_only-processed_stud-invResult.pkl" contains the results of executing inverse classification. The example_data directory also contains two trained models ("regular" and "indirect").
+4. Use inv_class.py to execute inverse classification.  Please see "example_inv_class.sh" for an example. Note that the file "./example_data/pos_only-processed_stud-invResult.pkl" contains the results of executing inverse classification on the example dataset, "Student Peformance". The example_data directory also contains two trained models ("regular" and "indirect") that were experimentally found to provide good predictive performance.
